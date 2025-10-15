@@ -1,28 +1,45 @@
 
 from pydantic import BaseModel
+from typing import List
 
-class Item(BaseModel):
+class TodoItem(BaseModel):
     item: str
-    status: str
 
     class Config:
         schema_extra = {
             "example": {
-                "id": 1,
-                "item": {
-                    "item": "Example task",
-                    "status": "completed"
-                },
-                "id": 2,
-                "item": {
-                    "item": "Marsel",
-                    "status": "busy"
-
+                "item": "Read the next chapter of the book"
             }
         }
-    }
 
 
 class Todo(BaseModel):
     id: int
-    item: Item
+    item: str
+
+class TodoItem(BaseModel):
+    item: str
+
+    class Config: 
+        schema_extra = {
+                "example": { 
+                            "item": "Read the next chapter of the book, whose author is Marsel Timerbulatov!"
+                            }
+                        }
+
+class TodoItems(BaseModel):
+    todos: List[TodoItem]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "todos": [
+                    {
+                        "item": "Example schema 1!"
+                    },
+                    {
+                        "item": "Example schema 2!"
+                    }
+                ]
+            }
+        }
