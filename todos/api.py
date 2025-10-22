@@ -1,35 +1,14 @@
-from todo import todo_router 
-from fastapi import FastAPI 
-from todo import todo_router 
-from model import Todo, TodoItem, TodoItems
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
+from todo import todo_router
 
-app = FastAPI() 
+app = FastAPI()
+templates = Jinja2Templates(directory="templates/")
 
-@app.get("/") 
-async def welcome() -> dict:return {"message": "Тимербулатов Марсель"}
-
-async def retrieve_todo()->dict:
-    return{
-           "todos": todo_list
-    }
-@app.get("/todo")
-async def retrieve_todo() -> dict:
-    return {
-        "todos": [
-            {
-                "id": 1,
-                "item": "Example schema 1!"
-            },
-            {
-                "id": 2,
-                "item": "Example schema 2!"
-            },
-            {
-                "id": 3,
-                "item": "Example schema 5!"
-            }
-        ]
-    }
+@app.get("/")
+async def welcome(request: Request):
+    return templates.TemplateResponse("home.html", {
+        "request": request
+    })
 
 app.include_router(todo_router)
-

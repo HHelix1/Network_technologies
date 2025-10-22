@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        {% block content %}
+        <h1>Todo Application</h1>
+        <p>Добро пожаловать! Разработчик: Тимербулатов Марсель</p>
+        <a href="/todo" class="btn btn-primary">Перейти к задачам</a>
+        {% endblock %}
+    </div>
+</body>
+</html>
